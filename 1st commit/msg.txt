@@ -1,2 +1,2 @@
-feat: add links for state and city controllers
+feat: add links for state and city controllers in Admin panel Layout Page
 
