@@ -1,0 +1,121 @@
+﻿@functions {
+    public string IsActive(string controller, string action)
+    {
+        var currentController = ViewContext.RouteData.Values["controller"].ToString();
+        var currentAction = ViewContext.RouteData.Values["action"].ToString();
+        return currentController == controller && currentAction == action ? "active" : "";
+    }
+    }
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Admin</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <script src="https://kit.fontawesome.com/87ba71bd3b.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body>
+
+    <input type="checkbox" id="nav-toggle">
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2><span class="fa-solid fa-store"></span> <span>TrendsValley </span></h2>
+        </div>
+        <!--Secciones-del-tablero-->
+        <div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="../Areas/Customer/Views/Home">
+                        <span class="fa-solid fa-house"></span>
+                        <span>Hompage</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="@IsActive("Product","Index")" asp-area="Admin" asp-controller="Product" asp-action="Index" >
+                        <span class="fa-solid fa-shirt"></span>
+                        <span> Clothes</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="@IsActive("Category","Index")" asp-area="Admin" asp-controller="Category" asp-action="Index">
+                        <span class="fa-solid fa-list"></span>
+                        <span>Categories</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="@IsActive("Brand","Index")" asp-area="Admin" asp-controller="Brand" asp-action="Index">
+                        <span class="fa-brands fa-bandcamp"></span>
+                        <span>Brands</span>
+                    </a>
+                </li>
+
+                <li>
+                    <i></i>
+                    <a class="@IsActive("City","Index")" asp-area="Admin" asp-controller="City" asp-action="Index">
+                        <span class="fa-regular fa-user"></span>
+                        <span>Cities</span>
+                    </a>
+                </li>
+
+                <li>
+                    <i></i>
+                    <a class="@IsActive("State","Index")" asp-area="Admin" asp-controller="State" asp-action="Index">
+                        <span class="fa-regular fa-user"></span>
+                        <span>States</span>
+                    </a>
+                </li>
+                <li>
+                    <i></i>
+                    <a href="#">
+                        <span class="fa-regular fa-user"></span>
+                        <span>Users</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" >
+                        <span class="fa-solid fa-chart-simple"></span>
+                        <span>Charts </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h2>
+                <label for="nav-toggle">
+                    <span class="fa-solid fa-bars"></span>
+                </label> charts
+            </h2>
+            <div class="user-wrapper">
+
+                <div>
+                    <h4>Admin Account</h4>
+                    <small>owner</small>
+                </div>
+            </div>
+        </header>
+        <main>
+            @RenderBody()
+        </main>
+    </div>
+
+
+
+
+    @* <script>"js/admin.js"</script> *@
+</body>
+
+</html>
